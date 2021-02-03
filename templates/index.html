@@ -1,1 +1,10 @@
 <h1>{{heading}}</h1>
+
+<ul>
+    {% for item in recipes %}
+    <li>
+        {{item.title}} -> Submitted by {{item.author.name}}
+    </li>
+
+    {% endfor %}
+</ul>
