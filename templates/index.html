@@ -3,7 +3,7 @@
 <ul>
     {% for item in recipes %}
     <li>
-        <a href="/recipes/{{ item.id }}/">{{item.title}}</a> -> Submitted By <a href="/authors/{{ item.author.id }}">{{item.author.name}}</a>
+        <a href="/recipes/{{ item.id }}/">{{item.title}}</a>
     </li>
     {% endfor %}
 </ul>
