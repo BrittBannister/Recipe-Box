@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 
 from recipe_app.models import Author, Recipe
 from recipe_app.forms import AddRecipeForm
@@ -20,7 +20,27 @@ def author_detail(request, author_id):
         })
 
 def add_recipe(request):
+    context = {}
+    if request.method == 'POST':
+        form = AddRecipeForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            recipe = Recipe.objects.create(
+                title = data['title'],
+                author = data['author'],
+                description = data['description'],
+                time_required = data['time_required'],
+                instructions = data['instructions']
+            )
+            context.update({'message': 'Submitted Recipe Successfully!'})
+
     form = AddRecipeForm()
-    return render(request, 'add_recipe.html', {'form': form})
+    context.update({'form':form})
+    return render(
+        request,
+        'add_recipe.html', 
+        # {'form': form},
+        context
+    )
 
 
