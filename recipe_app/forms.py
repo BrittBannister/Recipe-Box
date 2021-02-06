@@ -7,3 +7,11 @@ class AddRecipeForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
     time_required = forms.CharField(max_length=100)
     instructions = forms.CharField(widget=forms.Textarea)
+
+class AddAuthorForm(forms.ModelForm):
+    class Meta:
+        model = Author
+        fields = [
+            'name',
+            'bio',
+        ]

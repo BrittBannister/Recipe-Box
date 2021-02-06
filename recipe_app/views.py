@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 
 from recipe_app.models import Author, Recipe
-from recipe_app.forms import AddRecipeForm
+from recipe_app.forms import AddRecipeForm, AddAuthorForm
 
 def index_view(request):
     recipes = Recipe.objects.all()
@@ -44,4 +44,13 @@ def add_recipe(request):
         context
     )
 
+
+def add_author(request):
+    if request.method == 'POST':
+        form = AddAuthorForm(request.POST)
+        form.save()
+        return HttpResponseRedirect(reverse('homepage'))
+
+    form = AddAuthorForm()
+    return render(request, 'add_author.html', {'form':form})
 
