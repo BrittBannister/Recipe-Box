@@ -39,7 +39,8 @@ def add_recipe(request):
     context.update({'form':form})
     return render(
         request,
-        'add_recipe.html', 
+        # 'add_recipe.html',
+        'generic_form.html',
         context
     )
 
@@ -51,5 +52,9 @@ def add_author(request):
         return HttpResponseRedirect(reverse('homepage'))
 
     form = AddAuthorForm()
-    return render(request, 'add_author.html', {'form':form})
+    return render(request,
+                #  'add_author.html', 
+                'generic_form.html',
+                 {'form':form}
+    )
 
