@@ -40,7 +40,6 @@ def add_recipe(request):
     return render(
         request,
         'add_recipe.html', 
-        # {'form': form},
         context
     )
 
