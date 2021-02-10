@@ -1,9 +1,20 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 '''
+USER:
+username
+password
+email
+
+one to one
+*********
 AUTHOR:
 name = charfield
 bio = textfield
 
+one to many
+***********
 RECIPE:
 title = charfield
 author = foreign key
@@ -15,6 +26,7 @@ instructions = textfield
 class Author(models.Model):
     name = models.CharField(max_length=100)
     bio = models.TextField(max_length=150)
+    user = models.OneToOneField(User, on_delete= models.CASCADE)
 
     def __str__(self):
         return self.name
