@@ -64,7 +64,7 @@ def add_author(request):
             )
 
             newform.save()
-        return HttpResponseRedirect(reverse('homepage'))
+            return HttpResponseRedirect(reverse('homepage'))
 
     form = AddAuthorForm()
     if request.user.is_staff:
