@@ -1,11 +1,30 @@
+<!-- TO ADD CSS: -->
+<!-- {% load static %}  -->
+<!-- <link rel="stylesheet" type="text/css" href={% static 'main/style.css' %} />  -->
+
+
 <h1>{{heading}}</h1>
 
-<h3><a href = '/recipe/addrecipe/'>Submit a recipe</a> or <a href = '/author/addauthor/'>Become an author.</a></h3>
+{% if user.is_authenticated %}
+<h2>Welcome, {{user.username}}</h2>
+{% else %} You aren't logged in!<br>      
+Create and account <a href = '/signup/'>here</a> or <a href= '/login/'>Login</a></h3>
+{% endif %}
 
+<h2>Recipes:</h2>
 <ul>
     {% for item in recipes %}
     <li>
-        <a href="/recipes/{{ item.id }}/">{{item.title}}</a>
+        <a href='/recipes/{{ item.id }}/'>{{item.title}}</a>
     </li>
     {% endfor %}
 </ul>
+<br>
+
+<a href="{% url 'add_recipe' %}"><button>Add Recipe</button></a>
+<a href="{% url 'add_author' %}"><button>Add Author</button></a>
+<a href="{% url 'logout' %}"><button>Logout</button></a>
+
+<!-- EXTRA CREDIT THOUGHTS: -->
+<!-- if !user.is_staff
+    button for adding an recipe but has a different view that will only show them, not all authors. -->
